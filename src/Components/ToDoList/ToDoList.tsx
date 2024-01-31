@@ -1,4 +1,8 @@
 import React, { useState } from 'react'
+import "./ToDoList.css"
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowDown, faArrowUp, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export default function ToDoList() {
     const [tasks, setTasks] = useState(['Make Dinner', 'Exercise']);
@@ -45,9 +49,9 @@ export default function ToDoList() {
             {tasks.map((task, index) => 
             <li key={index}>
                 <span>{task}</span>
-                <button onClick={() => handleDeleteTask(index)}>Delete</button>
-                <button onClick={() => handleUp(index)}>Up</button>
-                <button onClick={() => handleDown(index)}>Down</button>
+                <button onClick={() => handleDeleteTask(index)}><FontAwesomeIcon icon={faTrash} /></button>
+                <button onClick={() => handleUp(index)}><FontAwesomeIcon icon={faArrowUp}/></button>
+                <button onClick={() => handleDown(index)}><FontAwesomeIcon icon={faArrowDown}/></button>
             </li>
             
 )}

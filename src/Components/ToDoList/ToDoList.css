@@ -1,0 +1,106 @@
+/* styles.css */
+
+.to-do-list {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    color: #333;
+  }
+  
+  div {
+    margin-top: 20px;
+  }
+  
+  input {
+    flex: 1;
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+  }
+  
+  .add-btn {
+    flex: 0 0 50%;
+    padding: 8px 12px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .add-btn:hover {
+    background-color: #45a049;
+  }
+  
+  ol {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    margin: 10px 0;
+    padding: 10px;
+    color: white;
+    background-color: #6c6969;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    transition: background-color 0.3s;
+  }
+  
+ 
+  
+  button {
+    padding: 6px 9px;
+    margin-left: 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #ddd;
+  }
+  
+  /* Animation for task items */
+  li.fade-in {
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeIn 0.5s ease forwards;
+  }
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Media Query for responsiveness */
+  @media (max-width: 600px) {
+    input {
+      flex: 1;
+      padding: 6px;
+    }
+  
+    .add-btn {
+      flex: 0 0 50%;
+      padding: 6px 9px;
+    }
+  
+    button {
+      padding: 4px 6px;
+    }
+  }
+  
