@@ -70,19 +70,22 @@ export default function ToDoList() {
     <div className='to-do-list'>
         <h1>To Do List</h1>
         <div>
-            <input type="text" placeholder="Add new task..." value={newTask} onChange={handleNewTask} />
+            <input type="text" placeholder="Add new task..." value={newTask} onChange={handleNewTask} maxLength={24}/>
             <button className='add-btn' onClick={handleAddTask}>Add</button>
         </div>
-        
+        <div className='task-div'>
         {isEmpty?(<p>No Tasks</p>):(<ol>
             {tasks.map((task, index) => 
             <li key={index}>
                 <span>{task}</span>
+                <div className='btn-div'>
                 <button onClick={() => handleDeleteTask(index)}><FontAwesomeIcon icon={faTrash} /></button>
                 <button onClick={() => handleUp(index)}><FontAwesomeIcon icon={faArrowUp}/></button>
                 <button onClick={() => handleDown(index)}><FontAwesomeIcon icon={faArrowDown}/></button>
+                </div>
             </li>)}
         </ol>)}
+        </div>
         
     </div>
   )
