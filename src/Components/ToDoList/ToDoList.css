@@ -8,6 +8,10 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
+
+  p{
+    color: #333;
+  }
   
   h1 {
     color: #333;
@@ -48,7 +52,7 @@
   li {
     margin: 10px 0;
     padding: 10px;
-    color: white;
+    color: white ;
     background-color: #6c6969;
     border: 1px solid #ccc;
     border-radius: 4px;

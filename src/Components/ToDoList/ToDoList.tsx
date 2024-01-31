@@ -1,12 +1,27 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./ToDoList.css"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown, faArrowUp, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
-
 export default function ToDoList() {
-    const [tasks, setTasks] = useState(['Make Dinner', 'Exercise']);
+
+    const [tasks, setTasks] = useState([]);
     const [newTask, setNewTask] = useState('');
+    const [isEmpty, setEmpty] = useState(true);
+
+    //get tasks from in local storage
+    useEffect(() => {
+        const storedTasks = JSON.parse(localStorage.getItem('taskArray'));
+    
+        if (storedTasks!==null && storedTasks.length!==0) {
+          setTasks(storedTasks);
+          setEmpty(false);
+        } else {
+          setTasks([]);
+          setEmpty(true);
+        }
+      }, []); 
+    
 
     function handleNewTask(e){
         setNewTask(e.target.value)
@@ -15,12 +30,18 @@ export default function ToDoList() {
         if(newTask.trim() !== ""){
              setTasks([...tasks, newTask])
              setNewTask('');
+             setEmpty(false);
         }
+        
     }
     function handleDeleteTask(index){
         const updatedTasks = tasks.filter((_, i)=>i !== index);
+        if(updatedTasks.length===0){
+            localStorage.removeItem('taskArray');
+            setEmpty(true);
+        }
         setTasks(updatedTasks);
-
+        
     }
     function handleUp(index){
         if(index > 0){
@@ -38,6 +59,13 @@ export default function ToDoList() {
         }
 
     }
+    useEffect(() => {
+        if(!isEmpty){
+            localStorage.setItem('taskArray', JSON.stringify(tasks));
+        }
+       
+      }, [tasks]);
+      
   return (
     <div className='to-do-list'>
         <h1>To Do List</h1>
@@ -45,18 +73,17 @@ export default function ToDoList() {
             <input type="text" placeholder="Add new task..." value={newTask} onChange={handleNewTask} />
             <button className='add-btn' onClick={handleAddTask}>Add</button>
         </div>
-        <ol>
+        
+        {isEmpty?(<p>No Tasks</p>):(<ol>
             {tasks.map((task, index) => 
             <li key={index}>
                 <span>{task}</span>
                 <button onClick={() => handleDeleteTask(index)}><FontAwesomeIcon icon={faTrash} /></button>
                 <button onClick={() => handleUp(index)}><FontAwesomeIcon icon={faArrowUp}/></button>
                 <button onClick={() => handleDown(index)}><FontAwesomeIcon icon={faArrowDown}/></button>
-            </li>
-            
-)}
-            
-        </ol>
+            </li>)}
+        </ol>)}
+        
     </div>
   )
 }
